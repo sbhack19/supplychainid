@@ -1,2 +1,3 @@
-# supplychainid
-Supply Chain ID Team Repo
+# Supply Chain ID Team Repo
+
+GS1 Standards on Blockchain
