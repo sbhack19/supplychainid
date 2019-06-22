@@ -27,8 +27,8 @@ identity = "SupplyChainIDRootNode"
 # disable = true
 
 [websockets]
-# JSON-RPC will be accessible on this port
-# port = 8545
+# WebSockets RPC will be accessible on this port
+port = 8546
 
 # Enable this on production to allow remote connections
 # interface = "10.0.0.7"
