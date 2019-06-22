@@ -27,6 +27,7 @@ app.use('/static', express.static(path.join(__dirname, './static')));
 
 // Routes
 router.get('/address/:address', require('./routes/address'));
+router.get('/history', require('./routes/history'));
 router.get('/keys', require('./routes/keys'));
 router.post('/recordevent', require('./routes/recordevent'));
 router.get('/',

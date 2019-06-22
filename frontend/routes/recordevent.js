@@ -14,9 +14,7 @@ module.exports = async (req, res, next) => {
 
   BLOCKCHAIN
     .recordData(account.account, payload)
-    .then((response) => {
-      res.json(response);
-    })
+    .then(response => res.json(response))
     .catch((error) => {
       console.log('Error saving event data', error);
       return res.status(500).json({ error: 'Recording event data failed', e: error });

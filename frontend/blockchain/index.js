@@ -1,6 +1,7 @@
 const bip39 = require('bip39');
 const hdkey = require('hdkey');
 const Web3 = require('web3');
+const _ = require('underscore');
 
 // Ethereum based HD key derivation path
 const HDPATH_ROOT = "m/44'/60'/0'/0/0";
@@ -28,6 +29,49 @@ class Blockchain {
 
   getBalance(address) {
     return this.web3.eth.getBalance(address);
+  }
+
+
+  async getTransactions(page = 1) {
+    const blocksPerPage = 50;
+    const chainHeight = await this.web3.eth.getBlockNumber();
+
+    const offset = (page - 1) * blocksPerPage;
+    const pages = Math.ceil(chainHeight / blocksPerPage);
+
+    const start = Math.max(0, chainHeight - offset);
+    const end = Math.max(0, start - blocksPerPage);
+
+    return Promise.all(
+      _.range(start, end, -1)
+        .map(height => this.web3.eth
+          .getBlock(height, true)
+          .then(blockObj => (blockObj.transactions))),
+    ).then(transactions => [].concat(...transactions))
+    .then(transactions => transactions.map(this.parseTransaction_.bind(this)));
+  }
+
+
+  parseTransaction_(txnObj) {
+    let payload = {};
+    if (txnObj.input) {
+      try {
+        let json = Buffer.from(txnObj.input.slice(2), 'hex').toString('utf8');
+        payload = JSON.parse(json);
+      } catch(e) {
+        console.log('Failed to parse input to JSON', e);
+      }
+    }
+
+    return {
+      blockNumber: txnObj.blockNumber,
+      blockHash: txnObj.blockHash,
+      from: txnObj.from,
+      gas: txnObj.gas,
+      payload,
+      transactionHash: txnObj.hash,
+      value: this.web3.utils.fromWei(txnObj.value, 'ether'),
+    };
   }
 
 
