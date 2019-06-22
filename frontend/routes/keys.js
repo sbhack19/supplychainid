@@ -7,7 +7,6 @@ const HDPATH_ROOT = "m/44'/60'/0'/0/0";
 
 
 module.exports = (req, res, next) => {
-
   const WEB3 = req.app.get('web3');
 
   const keys = [];

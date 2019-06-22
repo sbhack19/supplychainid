@@ -6,10 +6,9 @@ const hbs = require('hbs');
 const path = require('path');
 const Web3 = require('web3');
 
-const HomeRouter = require('./routes/home');
-
 const app = express();
 const PORT = process.env.PORT || 8080;
+const router = express.Router();
 
 
 // Views
@@ -23,7 +22,16 @@ app.use('/static', express.static(path.join(__dirname, './static')));
 
 
 // Routes
-app.use(HomeRouter);
+router.get('/address/:address', require('./routes/address'));
+router.get('/keys', require('./routes/keys'));
+router.get('/',
+  (req, res, next) => {
+    return res.render('home');
+  },
+);
+
+
+app.use(router);
 
 
 // Services
