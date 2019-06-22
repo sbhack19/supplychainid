@@ -5,7 +5,11 @@ export default class Header extends Component {
     return (
       <header className="App-Header">
         <div className="container">
-          <h1>GS2.0</h1>
+          <div className="row">
+            <div className="col-12">
+              <h1>GS2.0</h1>
+            </div>
+          </div>
         </div>
       </header>
     );

@@ -5,7 +5,11 @@ export default class Footer extends Component {
     return (
       <footer className="App-Footer">
           <div className="container">
-            <h1>#SBHack</h1>
+            <div className="row">
+              <div className="col-12">
+                <h1>#SBHack</h1>
+              </div>
+            </div>
           </div>
       </footer>
     );
