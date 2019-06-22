@@ -19,6 +19,7 @@ module.exports = (req, res, next) => {
 
     keys.push({
       address: account.address,
+      mnemonic,
       private: key.privateKey.toString('hex'),
       public: key.publicKey.toString('hex'),
     });
