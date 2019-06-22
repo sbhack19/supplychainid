@@ -24,14 +24,14 @@ identity = "SupplyChainIDRootNode"
 
 [rpc]
 # You won't be able to interact with Parity using JSON-RPC
-# disable = true
+disable = true
 
 [websockets]
 # WebSockets RPC will be accessible on this port
 port = 8546
 
 # Enable this on production to allow remote connections
-# interface = "10.0.0.7"
+interface = "all"
 
 # Only selected APIs will be exposed over this interface.
 apis = ["all"]
