@@ -1,8 +1,10 @@
 module.exports = async (req, res, next) => {
   const BLOCKCHAIN = req.app.get('blockchain');
+  const page = req.query.page || 1;
+
 
   BLOCKCHAIN
-    .getTransactions()
+    .getTransactions(page)
     .then(response => res.json(response))
     .catch((error) => {
       console.log('Fetching transactions failed', error);

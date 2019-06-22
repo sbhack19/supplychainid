@@ -78,6 +78,7 @@ class Blockchain {
   async recordData(account, payload) {
     const data = Buffer.from(JSON.stringify(payload), 'utf8').toString('hex');
     const txn = {
+      from: account.address,
       // Use the burn address for now to record data with no value transfered
       to: '0x0000000000000000000000000000000000000000',
       value: '0',
