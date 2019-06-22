@@ -1,0 +1,30 @@
+{
+  "name": "supplychainid-frontend",
+  "version": "1.0.0",
+  "description": "SBHack 2019 Supply Chain ID Team Frontend",
+  "main": "server.js",
+  "dependencies": {
+    "aws-sdk": "^2.480.0",
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "hbs": "^4.0.4",
+    "web3": "^1.0.0-beta.55"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  },
+  "scripts": {
+    "start:dev": "nodemon ./server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sbhack19/supplychainid.git"
+  },
+  "author": "David Arvan <david.arvan@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sbhack19/supplychainid/issues"
+  },
+  "homepage": "https://github.com/sbhack19/supplychainid#readme"
+}
