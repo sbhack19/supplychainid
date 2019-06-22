@@ -1,0 +1,58 @@
+# This config should be placed in following path:
+# /supplychainid/blockchain/SupplyChainID
+#
+# For more options see the config generator
+# https://paritytech.github.io/parity-config-generator/
+#
+
+[parity]
+# Custom chain
+chain = "SupplyChainID"
+
+# Blockchain and settings will be stored in
+base_path = "/supplychainid/blockchain/SupplyChainID"
+
+# You will be identified as amongst other nodes..
+identity = "SupplyChainIDRootNode"
+
+[network]
+# Parity will listen for connections on this port
+# port = 30303
+
+# Override the bootnodes from selected chain file.
+# bootnodes = []
+
+[rpc]
+# You won't be able to interact with Parity using JSON-RPC
+# disable = true
+
+[websockets]
+# JSON-RPC will be accessible on this port
+# port = 8545
+
+# Enable this on production to allow remote connections
+# interface = "10.0.0.7"
+
+# Only selected APIs will be exposed over this interface.
+apis = ["all"]
+
+# Allow connections only using specified addresses.
+hosts = ["all"]
+
+# Allows connecting from Origin 'all'.
+origins = ["all"]
+
+[ipc]
+# You won't be able to use IPC to interact with Parity.
+disable = true
+
+[mining]
+# Minimum amount of Wei per GAS to be paid for a transaction to be accepted for mining. Overrides --usd-per-tx.
+min_gas_price = 0
+
+# Gas limit will be raised at most by 0 gas.
+gas_cap = "0"
+
+[secretstore]
+# You won't be able to encrypt and decrypt secrets.
+disable = true
