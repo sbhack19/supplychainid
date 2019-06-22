@@ -28,5 +28,5 @@ app.listen(PORT, (error) => {
   if (error) {
     throw error;
   }
-  console.log(`Frontend started on port ${PORT}`);
+  console.log(`Frontend started at http://127.0.0.1:${PORT}`);
 });
