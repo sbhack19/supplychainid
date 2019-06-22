@@ -1,10 +1,9 @@
-module.exports = (req, res, next) => {
-  const WEB3 = req.app.get('web3');
-  const address = req.params.address;
+module.exports = async (req, res, next) => {
+  const BLOCKCHAIN = req.app.get('blockchain');
 
-  WEB3.eth.getBalance(
-    address,
-    (error, balance) => {
+  BLOCKCHAIN
+    .getBalance(req.params.address)
+    .then((balance) => {
       const results = {
         balance,
       };

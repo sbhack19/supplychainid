@@ -1,15 +1,19 @@
 /**
  * SBHack 2019 Supply Chain ID Frontend
  */
+const bodyParser = require('body-parser');
 const express = require('express');
 const hbs = require('hbs');
 const path = require('path');
-const Web3 = require('web3');
+
+const Blockchain = require('./blockchain');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
 const router = express.Router();
 
+
+app.use(bodyParser.json());
 
 // Views
 app.set('views', path.join(__dirname, './views'));
@@ -24,6 +28,7 @@ app.use('/static', express.static(path.join(__dirname, './static')));
 // Routes
 router.get('/address/:address', require('./routes/address'));
 router.get('/keys', require('./routes/keys'));
+router.post('/recordevent', require('./routes/recordevent'));
 router.get('/',
   (req, res, next) => {
     return res.render('home');
@@ -35,7 +40,7 @@ app.use(router);
 
 
 // Services
-app.set('web3', new Web3('ws://18.194.33.239:8546'));
+app.set('blockchain', new Blockchain());
 
 
 app.listen(PORT, (error) => {
