@@ -3,6 +3,12 @@
   <head>
     <title>SBHack 2019 Supply Chain ID Team</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+    <style type="text/css">
+      a {
+        -webkit-transition: none;
+        transition: none;
+      }
+    </style>
   </head>
   <body>
     <div class="container my-5">
@@ -35,12 +41,18 @@
       <div class="row">
         <div class="col-sm-6">
           <p>
-            In leiu of, and in preparation for, Ethereum being available on AWS Managed Blockchain, we have recreated the simple one-click deploy. Our solution includes Ethereum running on EC2 instances inside of a VPC. The Security Group rules for the VPC allow for&hellip;
+            In leiu of, and in preparation for, Ethereum being available on AWS Managed Blockchain, we have recreated the results of the simple one-click deploy.
           </p>
+          <p>
+            Our solution is a private Ethereum instance running on EC2 inside of a VPC. The Security Group rules for the VPC allow for
+          </p>
+
+          <p>
+            We confirmed with the AWS team that our configuration can be written as a Cloud Formation yaml
         </div>
         <div class="col-sm-6">
           <p>
-            <a href="https://github.com/sbhack19/supplychainid" target="_blank">
+            <a href="https://github.com/sbhack19/supplychainid" target="_blank" class="btn float-right">
               <img src="github.png" class="float-left mr-2" style="width: 18px;">
               Source Code
             </a>
@@ -49,7 +61,7 @@
           <h4>AWS Stack</h4>
           <ul>
             <li>EC2, running Ethereum inside VPC</li>
-            <li>Elastic Beanstalk, Load balanced</li>
+            <li>Elastic Beanstalk, load balanced</li>
             <li>&hellip;</li>
           </ul>
         </div>
@@ -61,6 +73,10 @@
       </p>
 
       <hr>
+
+      <p class="text-muted">
+        MIT License
+      </p>
 
       <p class="text-muted">
         Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:

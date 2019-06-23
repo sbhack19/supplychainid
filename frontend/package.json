@@ -7,10 +7,13 @@
     "aws-sdk": "^2.480.0",
     "bip39": "^3.0.2",
     "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "hbs": "^4.0.4",
     "hdkey": "^1.1.1",
+    "moment": "^2.24.0",
+    "mongodb": "^3.2.7",
     "underscore": "^1.9.1",
     "web3": "^1.0.0-beta.37"
   },
@@ -18,6 +21,9 @@
     "nodemon": "^1.19.1"
   },
   "scripts": {
+    "build:app": "cd ../react-app && npm run build && cd -",
+    "copy:app": "rm -rf static/app && cp -R ../react-app/build static/app",
+    "deploy": "npm run build:app && npm run copy:app && eb deploy",
     "start:dev": "nodemon ./server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

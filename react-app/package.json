@@ -31,5 +31,6 @@
       "last 1 safari version"
     ]
   },
+  "homepage": "http://team18.supply-chain-id.sbhack.io/app",
   "proxy": "http://localhost:8080"
 }

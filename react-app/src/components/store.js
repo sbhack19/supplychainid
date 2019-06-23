@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-export default class Retailer extends Component {
+export default class Store extends Component {
   constructor(props) {
     super(props);
 
@@ -19,7 +19,7 @@ export default class Retailer extends Component {
     let destination = this.props.destination;
 
     return (
-      <section className="retailer-Section">
+      <section className="store-Section">
         <div className="container">
           <div className="row">
             <div className="col-12">
@@ -48,7 +48,8 @@ export default class Retailer extends Component {
                   {status === 'readyToDeliver' ? (
                     <button onClick={this.props.handlePartyConfirmation}>Confirm</button>
                   ) : (
-                    <button onClick={() => this.setState({packing: !packing})}>Packing</button>
+                    <React.Fragment></React.Fragment>
+                    // <button onClick={() => this.setState({packing: !packing})}>Packing</button>
                   )}
                 </React.Fragment>
               ) : (

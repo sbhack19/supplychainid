@@ -6,11 +6,21 @@ const _ = require('underscore');
 // Ethereum based HD key derivation path
 const HDPATH_ROOT = "m/44'/60'/0'/0/0";
 
+const PROVIDER_URL = 'ws://18.194.33.239:8546';
+
 
 class Blockchain {
   constructor() {
-    this.web3 = new Web3('ws://18.194.33.239:8546');
+    this.connect_();
   }
+
+  connect_() {
+    this.provider = new Web3.providers.WebsocketProvider(PROVIDER_URL);
+    this.provider.on('end', () => this.connect_());
+    this.provider.on('error', () => this.connect_());
+    this.web3 = new Web3(this.provider);
+  }
+
 
   createAccount(optMnemonic) {
     const mnemonic = optMnemonic || bip39.generateMnemonic();
@@ -46,13 +56,17 @@ class Blockchain {
       _.range(start, end, -1)
         .map(height => this.web3.eth
           .getBlock(height, true)
-          .then(blockObj => (blockObj.transactions))),
-    ).then(transactions => [].concat(...transactions))
-    .then(transactions => transactions.map(this.parseTransaction_.bind(this)));
+          .then(blockObj => (this.parseBlock_(blockObj)))),
+    ).then(transactions => [].concat(...transactions));
   }
 
 
-  parseTransaction_(txnObj) {
+  parseBlock_(blockObj) {
+    return blockObj.transactions.map(this.parseTransaction_.bind(this, blockObj.timestamp));
+  }
+
+
+  parseTransaction_(timestamp, txnObj) {
     let payload = {};
     if (txnObj.input) {
       try {
@@ -69,6 +83,7 @@ class Blockchain {
       from: txnObj.from,
       gas: txnObj.gas,
       payload,
+      timestamp,
       transactionHash: txnObj.hash,
       value: this.web3.utils.fromWei(txnObj.value, 'ether'),
     };
@@ -95,6 +110,7 @@ class Blockchain {
 
     const { rawTransaction } = signedTransaction;
     const receipt = await this.web3.eth.sendSignedTransaction(rawTransaction);
+    console.log(`Recorded event to transaction ${receipt.transactionHash}`);
 
     return {
       blockNumber: receipt.blockNumber,
