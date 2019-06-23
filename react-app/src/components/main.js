@@ -1,36 +1,24 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import NoParty from './noParty';
 import Manufacturer from './manufacturer';
 import Retailer from './retailer';
+import Store from './store';
 import Transportation from './transportation';
 
-const NoParty = (props) => {
-  return (
-    <section className="noparty-section">
-        <div className="container">
-          <div className="row">
-            <div className="col-12">
-              <h1>Who are you?!</h1>
-            </div>
-          </div>
-        </div>
-    </section>
-  );
-}
-
-const Store = (props) => {
-  return (
-    <section className="store-section">
-        <div className="container">
-          <ul>
-            <li>CBD received (// sends ok to producer)</li>
-            <li>Transform</li>
-            <li>Ready to shipment</li>
-            <li>Shipped (// ok from both parties)</li>
-          </ul>
-        </div>
-    </section>
-  );
-}
+// const Store = (props) => {
+//   return (
+//     <section className="store-section">
+//         <div className="container">
+//           <ul>
+//             <li>CBD received (// sends ok to producer)</li>
+//             <li>Transform</li>
+//             <li>Ready to shipment</li>
+//             <li>Shipped (// ok from both parties)</li>
+//           </ul>
+//         </div>
+//     </section>
+//   );
+// }
 
 const Tracking = (props) => {
   let log = props.log;
@@ -78,11 +66,6 @@ const Tracking = (props) => {
     </section>
   );
 }
-
-
-
-
-
 
 export default class Main extends Component {
   constructor(props) {
@@ -308,7 +291,10 @@ export default class Main extends Component {
       }),
       () => {
         console.log('Party accepted! - Save in Consortium Blockchain');
-        this.setState({ status: ''});
+        this.setState({
+          status: '',
+          destination: ''
+        });
       }
     );
   }
@@ -401,7 +387,18 @@ export default class Main extends Component {
                           handleChangeReady={this.handleChangeReady}
                         />;
               case 'Store':
-                return <Store />;
+                return <Store 
+                          goods={this.goodsPerLocation('sgln:4012345.01003.0')}
+                          parties={parties}
+                          activeParty={activeParty}
+                          sscc={sscc}
+                          destination={destination}
+                          status={status}
+                          handlePartyConfirmation={this.handlePartyConfirmation}
+                          handleChangeSscc={this.handleChangeSscc}
+                          handleChangeDestination={this.handleChangeDestination}
+                          handleChangeReady={this.handleChangeReady}
+                        />;
               case 'Tracking':
                 return <Tracking log={log} />;
               default:
