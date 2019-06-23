@@ -1,16 +1,24 @@
 {
   "files": {
-    "main.css": "/app/static/css/main.7523153d.chunk.css",
-    "main.js": "/app/static/js/main.df2ce004.chunk.js",
-    "main.js.map": "/app/static/js/main.df2ce004.chunk.js.map",
+    "main.css": "/app/static/css/main.12fa650c.chunk.css",
+    "main.js": "/app/static/js/main.b70ea897.chunk.js",
+    "main.js.map": "/app/static/js/main.b70ea897.chunk.js.map",
     "runtime~main.js": "/app/static/js/runtime~main.d465ad9e.js",
     "runtime~main.js.map": "/app/static/js/runtime~main.d465ad9e.js.map",
-    "static/js/2.98dcc9dd.chunk.js": "/app/static/js/2.98dcc9dd.chunk.js",
-    "static/js/2.98dcc9dd.chunk.js.map": "/app/static/js/2.98dcc9dd.chunk.js.map",
+    "static/js/2.d844830d.chunk.js": "/app/static/js/2.d844830d.chunk.js",
+    "static/js/2.d844830d.chunk.js.map": "/app/static/js/2.d844830d.chunk.js.map",
     "index.html": "/app/index.html",
-    "precache-manifest.814d019f0754b2a2b0b298b6aa47a398.js": "/app/precache-manifest.814d019f0754b2a2b0b298b6aa47a398.js",
+    "precache-manifest.dff327b3b420736e47ca78a6b62d68c1.js": "/app/precache-manifest.dff327b3b420736e47ca78a6b62d68c1.js",
     "service-worker.js": "/app/service-worker.js",
-    "static/css/main.7523153d.chunk.css.map": "/app/static/css/main.7523153d.chunk.css.map",
-    "static/media/supply_chain.png": "/app/static/media/supply_chain.0e93f837.png"
+    "static/css/main.12fa650c.chunk.css.map": "/app/static/css/main.12fa650c.chunk.css.map",
+    "static/media/bottle.jpg": "/app/static/media/bottle.8f90c5a2.jpg",
+    "static/media/manufacturer.jpg": "/app/static/media/manufacturer.484503a2.jpg",
+    "static/media/pallet.jpg": "/app/static/media/pallet.44d37dd6.jpg",
+    "static/media/raw-oil.jpg": "/app/static/media/raw-oil.f88b7dbf.jpg",
+    "static/media/retailer.jpg": "/app/static/media/retailer.eabd6c1f.jpg",
+    "static/media/store.jpg": "/app/static/media/store.2b544231.jpg",
+    "static/media/supply_chain.png": "/app/static/media/supply_chain.0e93f837.png",
+    "static/media/transportation.jpg": "/app/static/media/transportation.c21a6e7a.jpg",
+    "static/media/weed.jpg": "/app/static/media/weed.48829605.jpg"
   }
 }
