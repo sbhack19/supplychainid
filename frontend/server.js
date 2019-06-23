@@ -24,7 +24,7 @@ app.set('view engine', 'hbs');
 
 // Static assets
 app.use('/app', express.static(path.join(__dirname, './static/app')));
-app.use('/favicon.ico', express.static(path.join(__dirname, './static/favicon.ico')));
+app.use('/favicon.ico', express.static(path.join(__dirname, './static/img/favicon.ico')));
 app.use('/static', express.static(path.join(__dirname, './static')));
 
 
