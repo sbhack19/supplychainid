@@ -19,6 +19,11 @@ button {
   background: #323232;
   color: #FFFFFF;
   font-weight: bold;
+  transition: all 0.25s ease;
+
+  &:hover {
+    background: #76A21E;
+  }
 }
 
 .app {
@@ -51,6 +56,35 @@ button {
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
+      }
+
+      .data-container {
+        margin: 25px auto;
+      }
+
+      .cbd-element {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 10px;
+
+        .cbd-data {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          margin-left: 10px;
+        }
+
+        img {
+          width: 100%;
+          height: 100%;
+          max-width: 150px;
+          max-height: 150px;
+        }
+      }
+
+      .ready-btn {
+        display: block;
+        margin-top: 10px;
       }
 
       h1 {
@@ -107,11 +141,11 @@ button {
           }
   
           &:hover {
-            color: #FF0B55;
+            color: #76A21E;
           }
     
           &.active {
-            color: #FF0B55;
+            color: #76A21E;
   
             &:after {
               content: '';
@@ -120,26 +154,20 @@ button {
               bottom: 0;
               width: 100%;
               height: 3px;
-              background: #FF0B55;
+              background: #76A21E;
             }
           }
         }
-      }
-    }
-    
-    .tracking-section {
-      ul {
-        margin: 0;
-      }
-    
-      .tracking-entry {
-        border:1px solid black;
       }
     }
   }
   
   .app-footer {
     text-align: center;
+
+    a {
+      color: #76A21E;
+    }
 
     h5 {
       margin: 10px 0;

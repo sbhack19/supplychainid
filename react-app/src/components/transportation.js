@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import transportationImage from "./../img/cbd/transportation.jpg";
+import palletImage from "./../img/cbd/pallet.jpg";
 
 export default class Transportation extends Component {
   render() {
@@ -12,21 +13,25 @@ export default class Transportation extends Component {
           <div className="container">
             <div className="row">
               <div className="col-12">
-                <h1>Goods</h1>
+                <h1>Goods to transport</h1>
               </div>
             </div>
           </div>
         </div>
-        <div className="container">
+        <div className="container data-container">
           <div className="row">
             <div className="col-12">
               {status === 'readyToShip' || status === 'inRoute' || status === 'readyToDeliver' ? (
                 <React.Fragment>
-                  <h4>Goods to transport</h4>
                   <ul>
                     {goods.map((good, i) => {
                       return(
-                        <li key={i}>{good.gtin}</li>
+                        <li key={i} className='cbd-element'>
+                          <img src={palletImage} alt="CBD raw oil" />
+                          <div className="cbd-data">
+                            <h5>{good.gtin}</h5>
+                          </div>
+                        </li>
                       )
                     })}
                   </ul>

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import storeImage from "./../img/cbd/store.jpg";
+import bottleImage from "./../img/cbd/bottle.jpg";
 
 export default class Store extends Component {
   constructor(props) {
@@ -30,27 +31,29 @@ export default class Store extends Component {
             </div>
           </div>
         </div>
-        <div className="container">
+        <div className="container data-container">
           <div className="row">
             <div className="col-12">
               {goods && goods.length ? (
                 <React.Fragment>
-                  <h4>Goods</h4>
                   <ul>
                     {goods.map((good, i) => {
                       return(
-                        <li key={i}>
-                          {good.gtin}
-                          {packing && (
-                            <select onChange={this.props.handleChangeSscc.bind(this, good)} value={good.sscc}>
-                              <option value='' disabled>SSCC</option>
-                              {sscc.map((code, j) => {
-                                return(
-                                  <option key={j} value={code}>{code}</option>
-                                )
-                              })}
-                            </select>
-                          )}
+                        <li key={i} className='cbd-element'>
+                          <img src={bottleImage} alt="CBD oil" />
+                          <div className="cbd-data">
+                            <h5>{good.gtin}</h5>
+                            {packing && (
+                              <select onChange={this.props.handleChangeSscc.bind(this, good)} value={good.sscc}>
+                                <option value='' disabled>SSCC</option>
+                                {sscc.map((code, j) => {
+                                  return(
+                                    <option key={j} value={code}>{code}</option>
+                                  )
+                                })}
+                              </select>
+                            )}
+                          </div>
                         </li>
                       )
                     })}
