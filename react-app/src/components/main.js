@@ -5,68 +5,6 @@ import Retailer from './retailer';
 import Store from './store';
 import Transportation from './transportation';
 
-// const Store = (props) => {
-//   return (
-//     <section className="store-section">
-//         <div className="container">
-//           <ul>
-//             <li>CBD received (// sends ok to producer)</li>
-//             <li>Transform</li>
-//             <li>Ready to shipment</li>
-//             <li>Shipped (// ok from both parties)</li>
-//           </ul>
-//         </div>
-//     </section>
-//   );
-// }
-
-const Tracking = (props) => {
-  let log = props.log;
-
-  return (
-    <section className="tracking-section">
-        <div className="container">
-          <div className="row">
-            {log.map((entry, i) => {
-              let timeEntry = entry.eventTime.split('T');
-              let date = [timeEntry[0], timeEntry[1].split('.')[0]];
-
-              return (
-                <div 
-                  key={i}
-                  className="tracking-entry col-12"
-                >
-                  <div>
-                    <h2>What</h2>
-                    <ul>
-                      {entry.epcList.map((epc, j) => {
-                        return(
-                          <li key={j}>{epc.replace(/urn:epc:id:sgtin:/g,'')}</li>
-                        )
-                      })}
-                    </ul>
-                  </div>
-                  <div>
-                    <h2>Why</h2>
-                    {entry.bizStep.replace(/urn:epcglobal:cbv:bizstep:/g,'')}
-                  </div>
-                  <div>
-                    <h2>Where</h2>
-                    {entry.readPoint.replace(/urn:epc:id:sgln:/g,'')}
-                  </div>
-                  <div>
-                    <h2>When</h2>
-                    {date[0] + ' ' + date[1]}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-    </section>
-  );
-}
-
 export default class Main extends Component {
   constructor(props) {
     super(props);
@@ -91,7 +29,6 @@ export default class Main extends Component {
         }
       ],
       'activeParty': '',
-      'bizSteps': ['encoding', 'packing', 'accepting', 'loading', 'departing', 'arriving', 'receiving', 'cycle_counting','unpacking', 'inspecting', 'retail_selling'],
       'sscc': ['sscc:40001356.5900000001', 'sscc:40001356.5900000002', 'sscc:40001356.5900000003', 'sscc:40001356.5900000004'],
       'goods': [
         {
@@ -236,69 +173,6 @@ export default class Main extends Component {
     this.setState({ destination: destination.target.value })
   }
 
-  handleChangeReady = (party, status) => {
-    if(status === 'readyToDeliver') {
-      this.setState(
-        prevState => ({
-          goods: prevState.goods.map((obj, i) =>
-            obj.sscc && !obj.where 
-              ? Object.assign(obj, {
-                  where: this.state.destination,
-                })
-              : obj
-          )
-        })
-      );
-    }
-
-    this.setState(
-      { status: status},
-      () => {
-        console.log(status, 'Ready to send! - Save in ' + party + ' Blockchain');
-      }
-    );
-  }
-
-  handleTransportConfirmation = (status) => {
-    this.setState(
-      prevState => ({
-        goods: prevState.goods.map((obj, i) =>
-          obj.sscc
-            ? Object.assign(obj, {
-                where: '',
-              })
-            : obj
-        )
-      }),
-      () => {
-        console.log('Transportation accepted - Save in Consortium Blockchain');
-
-        this.setState({ status: 'inRoute'});
-      }
-    );
-  }
-
-  handlePartyConfirmation = () => {
-    this.setState(
-      prevState => ({
-        goods: prevState.goods.map((obj, i) =>
-          obj.sscc && obj.where 
-            ? Object.assign(obj, {
-                sscc: '',
-              })
-            : obj
-        )
-      }),
-      () => {
-        console.log('Party accepted! - Save in Consortium Blockchain');
-        this.setState({
-          status: '',
-          destination: ''
-        });
-      }
-    );
-  }
-
   handleChangeSscc = (good, e) => {
     let newSscc = e.target.value;
 
@@ -313,6 +187,130 @@ export default class Main extends Component {
     }));
   }
 
+  /**
+   * Blockchain Actions
+   */
+  handleChangeReady = (party, status) => {
+    if(status === 'readyToDeliver') {
+      this.setState(
+        prevState => ({
+          goods: prevState.goods.map((obj, i) =>
+            obj.sscc && !obj.where 
+              ? Object.assign(obj, {
+                  where: this.state.destination,
+                })
+              : obj
+          )
+        }),
+        () => {
+          console.log(status, 'Ready to deliver');
+
+          this.saveToBlockchain(this.epcListData(), this.goodsPerSscc()[0]['where'], status);
+        }
+      );
+    }
+
+    this.setState(
+      { status: status},
+      () => {
+        console.log(status, 'Ready to send! - Saved in ' + party + ' Blockchain');
+
+        this.saveToBlockchain(this.epcListData(), this.goodsPerSscc()[0]['where'], status);
+      }
+    );
+  }
+
+  handleTransportConfirmation = () => {
+    this.setState(
+      prevState => ({
+        goods: prevState.goods.map((obj, i) =>
+          obj.sscc
+            ? Object.assign(obj, {
+                where: '',
+              })
+            : obj
+        )
+      }),
+      () => {
+        console.log('Transportation accepted - Save in Consortium Blockchain');
+
+        this.saveToBlockchain(this.epcListData(), 'inMovement', 'onRoute');
+
+        this.setState({ status: 'inRoute'});
+      }
+    );
+  }
+
+  handlePartyConfirmation = () => {
+    console.log('Party accepted! - Save in Consortium Blockchain');
+
+    this.saveToBlockchain(this.epcListData(), this.state.destination, 'outbound');
+
+    this.setState(
+      prevState => ({
+        goods: prevState.goods.map((obj, i) =>
+          obj.sscc && obj.where 
+            ? Object.assign(obj, {
+                sscc: '',
+              })
+            : obj
+        )
+      }),
+      () => {
+        this.setState({
+          status: '',
+          destination: ''
+        });
+      }
+    );
+  }
+
+  /**
+   * Helpers
+   */
+  saveToBlockchain = (what, where, why) => {
+    fetch('http://team18.supply-chain-id.sbhack.io/recordevent', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        "mnemonic": "wheat divide clerk blast avoid retire avoid hammer current drastic deputy tent",
+        "payload": {
+          // Event Type
+          "isA": "ObjectEvent",
+        
+          // When
+          "eventTime": new Date(),
+          "eventTimeZoneOffset": "+01:00",
+        
+          // What
+          "epcList": what,
+        
+          // Where
+          "readPoint": where,
+        
+          // Why
+          "action": "OBSERVE",
+          "bizStep": "urn:epcglobal:cbv:bizstep:" + why,
+          "disposition": "",
+          "bizTransactionList": []
+        }
+      }),
+    });
+  }
+
+  epcListData = () => {
+    let epcList = [];
+
+    this.goodsPerSscc().forEach(element => {
+      if(element.sscc) {
+        epcList.push('urn:epc:id:' + element.gtin);
+      }
+    });
+
+    return epcList;
+  }
   goodsPerLocation = location => {
     return this.state.goods.filter(obj => {
       return obj.where === location
@@ -326,7 +324,7 @@ export default class Main extends Component {
   }
 
   render() {
-    let { parties, activeParty, sscc, destination, status, log } = this.state;
+    let { parties, activeParty, sscc, destination, status } = this.state;
 
     return (
       <div className="App-Main">
@@ -366,13 +364,6 @@ export default class Main extends Component {
                           handleChangeDestination={this.handleChangeDestination}
                           handleChangeReady={this.handleChangeReady}
                         />;
-              case 'Transportation':
-                return <Transportation
-                          goods={this.goodsPerSscc()}
-                          status={status}
-                          handleTransportConfirmation={this.handleTransportConfirmation}
-                          handleChangeReady={this.handleChangeReady}
-                        />;
               case 'Retailer':
                 return <Retailer 
                           goods={this.goodsPerLocation('sgln:4012345.01002.0')}
@@ -399,11 +390,15 @@ export default class Main extends Component {
                           handleChangeDestination={this.handleChangeDestination}
                           handleChangeReady={this.handleChangeReady}
                         />;
-              case 'Tracking':
-                return <Tracking log={log} />;
+              case 'Transportation':
+                return <Transportation
+                          goods={this.goodsPerSscc()}
+                          status={status}
+                          handleTransportConfirmation={this.handleTransportConfirmation}
+                          handleChangeReady={this.handleChangeReady}
+                        />;
               default:
                 return <NoParty />;
-                // return <Manufacturer />;
             }
           })()}
         </section>

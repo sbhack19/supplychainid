@@ -14,6 +14,16 @@ ul {
   list-style: none;
 }
 
+.app-header {
+  background-color: #323232;
+  color: #FFFFFF;
+  text-align: center;
+
+  h1 {
+    margin: 5px 0;
+  }
+}
+
 .parties-selection {
   ul {
     display: flex;
