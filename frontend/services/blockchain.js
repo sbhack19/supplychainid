@@ -6,11 +6,21 @@ const _ = require('underscore');
 // Ethereum based HD key derivation path
 const HDPATH_ROOT = "m/44'/60'/0'/0/0";
 
+const PROVIDER_URL = 'ws://18.194.33.239:8546';
+
 
 class Blockchain {
   constructor() {
-    this.web3 = new Web3('ws://18.194.33.239:8546');
+    this.connect_();
   }
+
+  connect_() {
+    this.provider = new Web3.providers.WebsocketProvider(PROVIDER_URL);
+    this.provider.on('end', () => this.connect_());
+    this.provider.on('error', () => this.connect_());
+    this.web3 = new Web3(this.provider);
+  }
+
 
   createAccount(optMnemonic) {
     const mnemonic = optMnemonic || bip39.generateMnemonic();
@@ -95,6 +105,7 @@ class Blockchain {
 
     const { rawTransaction } = signedTransaction;
     const receipt = await this.web3.eth.sendSignedTransaction(rawTransaction);
+    console.log(`Recorded event to transaction ${receipt.transactionHash}`);
 
     return {
       blockNumber: receipt.blockNumber,

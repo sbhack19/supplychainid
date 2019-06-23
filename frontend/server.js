@@ -6,7 +6,7 @@ const express = require('express');
 const hbs = require('hbs');
 const path = require('path');
 
-const Blockchain = require('./blockchain');
+const Blockchain = require('./services/blockchain');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -21,6 +21,7 @@ app.set('view engine', 'hbs');
 
 
 // Static assets
+app.use('/app', express.static(path.join(__dirname, './static/app')));
 app.use('/favicon.ico', express.static(path.join(__dirname, './static/favicon.ico')));
 app.use('/static', express.static(path.join(__dirname, './static')));
 
