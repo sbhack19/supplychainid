@@ -1,7 +1,7 @@
 {
   "name": "supplychainid-frontend",
   "version": "1.0.0",
-  "description": "SBHack 2019 Supply Chain ID Team Frontend",
+  "description": "SBHack 2019 Supply Chain ID Team 18 Frontend",
   "main": "server.js",
   "dependencies": {
     "aws-sdk": "^2.480.0",
