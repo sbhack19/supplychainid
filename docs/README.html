@@ -28,20 +28,32 @@
       </p>
 
       <h2 class="mt-5">Solution</h2>
-      <a href="http://team18.supply-chain-id.sbhack.io/"
-          target="_blank" class="btn float-right">
-        <img src="open-in-new.svg" class="float-right ml-2" style="width: 18px;">
-        Live Deployment
-      </a>
 
-      <p>
-        Video goes here.
-      </p>
+      <div class="row">
+        <div class="col-sm-6">
+          <p>
+            Video goes here.
+          </p>
+        </div>
+        <div class="col-sm-6 text-right">
+          <a href="http://team18.supply-chain-id.sbhack.io/"
+              target="_blank" class="btn mb-3">
+            <img src="open-in-new.svg" class="float-right ml-2" style="width: 18px;">
+            Live Deployment
+          </a>
+          <br>
+          <a href="https://github.com/sbhack19/supplychainid" target="_blank" class="btn">
+            <img src="https://supplychainid.s3.eu-central-1.amazonaws.com/github.png"
+              class="float-right ml-2" style="width: 18px;">
+            Source Code
+          </a>
+        </div>
+      </div>
 
       <h3 class="mt-5">Overview</h3>
       <p>
         The goal is to create a solution to the logistical problem of the traceability and authentication of unique products. To achieve this we focused on a short and practical approach, after contemplating
-        the feasibility of putting the Gs1 standard into the form of multiple smart contracts, which could be updated on e.g handovers. Skipping options that were to big to tackle in the short period of
+        the feasibility of putting the GS1 standard into the form of multiple smart contracts, which could be updated on e.g handovers. Skipping options that were to big to tackle in the short period of
         the hackathon we agreed on enshuring traceability by just pushing the standard in form of JSON directly to the chain. This approach might be most useful in a consortium chain where the participants are
         selected to prevent unwanted modification.
       </p>
@@ -72,6 +84,12 @@
 
           <p>
             The API handles ingestion of the GS1 event data, writing it to the blockchain as a transaction data payload. A future version could instead convert the raw data to a <strong>"GS1 Smart Contract"</strong> deployment, opening the possibility for more 'active' data model objects.
+          </p>
+
+          <h4>Interoperability</h4>
+
+          <p>
+            We chose the Ethereum protocol because of its wide adoption as a public blockchain and the security and features it offers a private or consortium based solution. The availability of tools and talent, and the commitments of the existing global technical community to its future development, make it the highest value, lowest risk option.
           </p>
 
           <h4>Future</h4>
