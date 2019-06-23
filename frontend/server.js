@@ -32,6 +32,7 @@ app.use('/static', express.static(path.join(__dirname, './static')));
 router.get('/address/:address', require('./routes/address'));
 router.get('/history', require('./routes/history'));
 router.get('/keys', require('./routes/keys'));
+router.get('/realtime', require('./routes/realtime'));
 router.post('/recordevent', require('./routes/recordevent'));
 router.get('/',
   (req, res, next) => {

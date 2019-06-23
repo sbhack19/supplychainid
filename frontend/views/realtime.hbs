@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>SBHack 2019 Supply Chain ID - Real time feed</title>
+    <link rel="stylesheet" type="text/css" href="static/css/bootstrap.min.css">
+    <style type="text/css">
+      h4, h5 { margin-bottom: 0; }
+      h5 { margin-top: .5rem; }
+      pre { white-space: pre-wrap; }
+    </style>
+    <meta http-equiv="refresh" content="3">
+  </head>
+  <body>
+    <div class="container-fluid px-0">
+      <table class="table table-hover">
+        {{#each transactions}}
+        <tr>
+          <td>
+            <h4>Block #{{blockNumber}}</h4>
+            <small class="text-muted">{{blockHash}}</small>
+            <h5>Transaction</h5>
+            <code><small>{{transactionHash}}</small></code>
+            <br>
+            <strong>Event</strong>
+            <pre>{{payload}}</pre>
+          </td>
+        </tr>
+        {{/each}}
+      </table>
+    </div>
+  </body>
+</html>
