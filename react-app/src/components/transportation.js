@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import transportationImage from "./../img/cbd/transportation.jpg";
 
 export default class Transportation extends Component {
   render() {
@@ -7,6 +8,15 @@ export default class Transportation extends Component {
 
     return (
       <section className="transportation-section">
+        <div className="imageBackground" style={{backgroundImage: 'url('+ transportationImage +')'}}>
+          <div className="container">
+            <div className="row">
+              <div className="col-12">
+                <h1>Goods</h1>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className="container">
           <div className="row">
             <div className="col-12">

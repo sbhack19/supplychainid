@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import storeImage from "./../img/cbd/store.jpg";
 
 export default class Store extends Component {
   constructor(props) {
@@ -20,6 +21,15 @@ export default class Store extends Component {
 
     return (
       <section className="store-Section">
+        <div className="imageBackground" style={{backgroundImage: 'url('+ storeImage +')'}}>
+          <div className="container">
+            <div className="row">
+              <div className="col-12">
+                <h1>Goods</h1>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className="container">
           <div className="row">
             <div className="col-12">

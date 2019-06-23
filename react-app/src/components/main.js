@@ -23,9 +23,6 @@ export default class Main extends Component {
         }, {
           'name': 'Transportation',
           'location': ''
-        }, {
-          'name': 'Tracking',
-          'location': ''
         }
       ],
       'activeParty': '',
@@ -327,7 +324,7 @@ export default class Main extends Component {
     let { parties, activeParty, sscc, destination, status } = this.state;
 
     return (
-      <div className="App-Main">
+      <div className="app-main">
         <section className="parties-selection">
           <div className="container">
             <div className="row">

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import manufacturerImage from "./../img/cbd/manufacturer.jpg";
 
 export default class Manufacturer extends Component {
   constructor(props) {
@@ -19,12 +20,20 @@ export default class Manufacturer extends Component {
 
     return (
       <section className="manufacturer-section">
+        <div className="imageBackground" style={{backgroundImage: 'url('+ manufacturerImage +')'}}>
+          <div className="container">
+            <div className="row">
+              <div className="col-12">
+                <h1>Goods</h1>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className="container">
           <div className="row">
             <div className="col-12">
               {goods && goods.length ? (
                 <React.Fragment>
-                  <h4>Goods</h4>
                   <ul>
                     {goods.map((good, i) => {
                       return(

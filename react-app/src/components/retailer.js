@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import retailerImage from "./../img/cbd/retailer.jpg";
 
 export default class Retailer extends Component {
   constructor(props) {
@@ -20,6 +21,15 @@ export default class Retailer extends Component {
 
     return (
       <section className="retailer-Section">
+        <div className="imageBackground" style={{backgroundImage: 'url('+ retailerImage +')'}}>
+          <div className="container">
+            <div className="row">
+              <div className="col-12">
+                <h1>Goods</h1>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className="container">
           <div className="row">
             <div className="col-12">

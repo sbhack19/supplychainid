@@ -7,9 +7,10 @@ export default class NoParty extends Component {
         <section className="noparty-section">
           <div className="container">
             <div className="row">
-              <div className="col-12">
-                <h1>Who are you?!</h1>
+              <div className="col-12 welcome-container">
+                <h2>Welcome to the future</h2>
                 <img src={introImage} alt="Supply Chain by Becris from the Noun Project" />
+                <h2>of CBD Supply Chain</h2>
               </div>
             </div>
           </div>
