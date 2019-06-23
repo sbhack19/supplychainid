@@ -56,13 +56,17 @@ class Blockchain {
       _.range(start, end, -1)
         .map(height => this.web3.eth
           .getBlock(height, true)
-          .then(blockObj => (blockObj.transactions))),
-    ).then(transactions => [].concat(...transactions))
-    .then(transactions => transactions.map(this.parseTransaction_.bind(this)));
+          .then(blockObj => (this.parseBlock_(blockObj)))),
+    ).then(transactions => [].concat(...transactions));
   }
 
 
-  parseTransaction_(txnObj) {
+  parseBlock_(blockObj) {
+    return blockObj.transactions.map(this.parseTransaction_.bind(this, blockObj.timestamp));
+  }
+
+
+  parseTransaction_(timestamp, txnObj) {
     let payload = {};
     if (txnObj.input) {
       try {
@@ -79,6 +83,7 @@ class Blockchain {
       from: txnObj.from,
       gas: txnObj.gas,
       payload,
+      timestamp,
       transactionHash: txnObj.hash,
       value: this.web3.utils.fromWei(txnObj.value, 'ether'),
     };

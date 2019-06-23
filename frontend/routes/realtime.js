@@ -1,3 +1,6 @@
+const moment = require('moment');
+
+
 module.exports = async (req, res, next) => {
   const BLOCKCHAIN = req.app.get('blockchain');
 
@@ -6,6 +9,7 @@ module.exports = async (req, res, next) => {
     .then((response) => {
       let results = response.map((tx) => {
         tx.payload = JSON.stringify(tx.payload, null, 2);
+        tx.since = moment(tx.timestamp / 1000, 'X').fromNow();
         return tx;
       });
       res.render('realtime', {
