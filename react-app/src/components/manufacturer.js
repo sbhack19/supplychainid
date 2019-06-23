@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import manufacturerImage from "./../img/cbd/manufacturer.jpg";
+import weedImage from "./../img/cbd/weed.jpg";
 
 export default class Manufacturer extends Component {
   constructor(props) {
@@ -29,16 +30,17 @@ export default class Manufacturer extends Component {
             </div>
           </div>
         </div>
-        <div className="container">
+        <div className="container data-container">
           <div className="row">
             <div className="col-12">
               {goods && goods.length ? (
-                <React.Fragment>
-                  <ul>
-                    {goods.map((good, i) => {
-                      return(
-                        <li key={i}>
-                          {good.gtin}
+                <ul>
+                  {goods.map((good, i) => {
+                    return(
+                      <li key={i} className='cbd-element'>
+                        <img src={weedImage} alt="CBD plant" />
+                        <div className="cbd-data">
+                          <h5>{good.gtin}</h5>
                           {packing && (
                             <select onChange={this.props.handleChangeSscc.bind(this, good)} value={good.sscc}>
                               <option value='' disabled>SSCC</option>
@@ -49,11 +51,11 @@ export default class Manufacturer extends Component {
                               })}
                             </select>
                           )}
-                        </li>
-                      )
-                    })}
-                  </ul>
-                </React.Fragment>
+                        </div>
+                      </li>
+                    )
+                  })}
+                </ul>
               ) : (
                 <h4>No goods available</h4>
               )}
@@ -76,7 +78,7 @@ export default class Manufacturer extends Component {
                     )
                   })}
                 </select>
-                <button onClick={this.props.handleChangeReady.bind(this, 'manufacturer', 'readyToShip')}>Ready</button>
+                <button className="ready-btn" onClick={this.props.handleChangeReady.bind(this, 'manufacturer', 'readyToShip')}>Ready</button>
               </div>
             )}
           </div>
