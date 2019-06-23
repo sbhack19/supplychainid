@@ -2,6 +2,7 @@
  * SBHack 2019 Supply Chain ID Frontend
  */
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const express = require('express');
 const hbs = require('hbs');
 const path = require('path');
@@ -14,6 +15,7 @@ const router = express.Router();
 
 
 app.use(bodyParser.json());
+app.use(cors());
 
 // Views
 app.set('views', path.join(__dirname, './views'));
