@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>SBHack 2019 Supply Chain ID Team</title>
+    <title>SBHack 2019 - Supply Chain ID Team</title>
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <style type="text/css">
       a {
@@ -12,7 +12,7 @@
   </head>
   <body>
     <div class="container my-5">
-      <h1>SBHack 2019 Supply Chain ID Team</h1>
+      <h1>SBHack 2019 - Supply Chain ID Team</h1>
 
       <h2 class="mt-5">Challenge</h2>
       <p>
@@ -25,6 +25,12 @@
       </p>
 
       <h2 class="mt-5">Solution</h2>
+      <a href="http://team18.supply-chain-id.sbhack.io/"
+          target="_blank" class="btn float-right">
+        <img src="open-in-new.svg" class="float-right ml-2" style="width: 18px;">
+        Live Deployment
+      </a>
+
       <p>
         Video goes here.
       </p>
@@ -37,55 +43,72 @@
         selected to prevent unwanted modification.
       </p>
 
+      <hr>
+
       <h3 class="mt-5">Technical Approach</h3>
+
       <div class="row">
         <div class="col-sm-6">
           <p>
             In leiu of, and in preparation for, Ethereum being available on AWS Managed Blockchain, we have recreated the results of the simple one-click deploy.
           </p>
-          <p>
-            Our solution is a private Ethereum instance running on EC2 inside of a VPC. The Security Group rules for the VPC allow for
-          </p>
+
+          <h4>Blockchain</h4>
 
           <p>
-            We confirmed with the AWS team that our configuration can be written as a Cloud Formation yaml
+            Our solution is a private Ethereum instance <a href="https://www.parity.io/" target="_blank">Parity</a> running on EC2 inside of a VPC. The Security Group rules of the VPC allow for communication only on the WebSockets RPC port between the Ethereum instance and Elastic Beanstalk. This is done via the official <a href="https://github.com/ethereum/web3.js/" target="_blank">web3 SDK</a>.
+          </p>
+
+          <h4>API</h4>
+
+          <p>
+            The auto scaling Elastic Beanstalk setup uses the Node.js stack and serves the REST API endpoints, the static resources for the web/mobile application, and a pseudo-realtime feed of data on the blockchain.
+          </p>
+
+          <h4>Ingestion Proxy</h4>
+
+          <p>
+            The API handles ingestion of the GS1 event data, writing it to the blockchain as a transaction data payload. A future version could instead convert the raw data to a <strong>"GS1 Smart Contract"</strong> deployment, opening the possibility for more 'active' data model objects.
+          </p>
+
+          <h4>Future</h4>
+
+          <p>
+            We confirmed with the AWS team that our configuration can be written as a Cloud Formation yaml file for easier automated deployments
+          </p>
         </div>
         <div class="col-sm-6">
-          <p>
-            <a href="https://github.com/sbhack19/supplychainid" target="_blank" class="btn float-right">
-              <img src="github.png" class="float-left mr-2" style="width: 18px;">
-              Source Code
-            </a>
-          </p>
-
           <h4>AWS Stack</h4>
           <ul>
             <li>EC2, running Ethereum inside VPC</li>
-            <li>Elastic Beanstalk, load balanced</li>
-            <li>&hellip;</li>
+            <li>Elastic Beanstalk, Node.js load balanced</li>
+            <li>React App</li>
           </ul>
         </div>
       </div>
 
+      <hr>
+
       <h2 class="mt-5">Conclusion</h2>
+
       <p>
         Summary goes here&hellip;
       </p>
 
       <hr>
 
-      <p class="text-muted">
+      <p class="text-muted small">
         MIT License
       </p>
 
-      <p class="text-muted">
+      <p class="text-muted small">
         Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
       </p>
 
-      <p class="text-muted">
+      <p class="text-muted small">
         The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
-      <p class="text-muted">
+      <p class="text-muted small">
         THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
       </p>
     </div>
