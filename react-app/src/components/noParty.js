@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import introImage from "./../img/supply_chain.png";
+import logo from "./../img/logo.jpg";
 
 export default class NoParty extends Component {
   render() {
@@ -9,7 +9,7 @@ export default class NoParty extends Component {
             <div className="row">
               <div className="col-12 welcome-container">
                 <h2>Welcome to the future</h2>
-                <img src={introImage} alt="Supply Chain" />
+                <img src={logo} alt="Supply Chain" />
                 <h2>of CBD Supply Chain</h2>
               </div>
             </div>
