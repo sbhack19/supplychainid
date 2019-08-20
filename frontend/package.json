@@ -4,18 +4,18 @@
   "description": "SBHack 2019 Supply Chain ID Team 18 Frontend",
   "main": "server.js",
   "dependencies": {
-    "aws-sdk": "^2.480.0",
+    "aws-sdk": "^2.513.0",
     "bip39": "^3.0.2",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
-    "dotenv": "^8.0.0",
+    "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "hbs": "^4.0.4",
     "hdkey": "^1.1.1",
     "moment": "^2.24.0",
-    "mongodb": "^3.2.7",
+    "mongodb": "^3.3.0",
     "underscore": "^1.9.1",
-    "web3": "^1.0.0-beta.37"
+    "web3": "^1.2.1"
   },
   "devDependencies": {
     "nodemon": "^1.19.1"
